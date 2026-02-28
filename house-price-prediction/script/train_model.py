@@ -15,7 +15,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 # %%
 # --- LOAD DATA ---
-ames_housing = pd.read_csv("house-price-prediction\\dataset\\ames-housing.csv")
+ames_housing = pd.read_csv("../data/ames-housing.csv")
 
 # %%
 # --- DATA CLEANING ---
