@@ -1,7 +1,7 @@
 [project]
 name = "data-science-projects"
 version = "0.1.0"
-description = "Add your description here"
+description = "A collection of end-to-end data science projects showcasing ML workflows, from EDA to model training."
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
