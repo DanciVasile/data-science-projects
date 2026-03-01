@@ -6,15 +6,14 @@ This script handles:
   2. Preprocessing pipeline (imputation + encoding)
   3. Training Linear Regression and Random Forest models
   4. Cross-validation evaluation
-  5. Saving trained models (.pkl) and figures (.pdf)
+  5. Saving trained models (.pkl) and comparisons figures (.pdf)
 
 Usage:
-    cd house-price-prediction
+    cd house_price_prediction
     python src/train.py
 """
 
 import logging
-import math
 import warnings
 from pathlib import Path
 
@@ -163,67 +162,6 @@ def load_data() -> tuple[pd.DataFrame, pd.Series]:
     return X, y
 
 
-# ---------------------------------------------------------------------------
-# 2. Save Exploratory Figures
-# ---------------------------------------------------------------------------
-def save_eda_figures(X: pd.DataFrame, y: pd.Series, y_log: pd.Series) -> None:
-    """Generate and save all EDA plots as PDFs (no interactive display)."""
-    divider("📈 SAVING EDA FIGURES")
-
-    numeric_features = X.select_dtypes(include=["int64", "float64"]).columns
-    categorical_features = X.select_dtypes(include=["object", "string"]).columns
-
-    # 1 — Sale Price distribution
-    fig, ax = plt.subplots(figsize=(10, 6))
-    ax.hist(y, bins=20, edgecolor="black", color="skyblue")
-    ax.set_title("Sale Price Distribution", fontsize=14, fontweight="bold")
-    ax.set_xlabel("Sale Price")
-    ax.set_ylabel("Count")
-    ax.grid(axis="y", alpha=0.3)
-    save_figure(fig, "01_sale_price_distribution.pdf")
-
-    # 2 — Log-transformed target
-    fig, ax = plt.subplots(figsize=(10, 6))
-    ax.hist(y_log, bins=20, edgecolor="black", color="lightcoral")
-    ax.set_title("Log-Transformed Sale Price Distribution", fontsize=14, fontweight="bold")
-    ax.set_xlabel("Log(Sale Price + 1)")
-    ax.set_ylabel("Count")
-    ax.grid(axis="y", alpha=0.3)
-    save_figure(fig, "02_log_sale_price_distribution.pdf")
-
-    # 3 — Numeric feature histograms
-    n_numeric = len(numeric_features)
-    fig = X[numeric_features].hist(
-        bins=20, edgecolor="black",
-        figsize=(15, 2 * n_numeric // 4),
-    )
-    plt.suptitle("Numeric Features Distribution", fontsize=14, fontweight="bold", y=1.00)
-    plt.tight_layout()
-    save_figure(plt.gcf(), "03_numeric_features_distribution.pdf")
-
-    # 4 — Categorical feature distributions
-    n_features = len(categorical_features)
-    cols_per_row = 4
-    n_rows = math.ceil(n_features / cols_per_row)
-    fig, axes = plt.subplots(n_rows, cols_per_row, figsize=(15, 4 * n_rows))
-    axes = axes.flatten()
-
-    for ax, col in zip(axes, categorical_features):
-        counts = X[col].value_counts(normalize=True).mul(100).head(10)
-        counts.sort_values().plot(kind="barh", ax=ax, color="teal")
-        ax.set_title(col, fontweight="bold")
-        ax.set_xlabel("Percentage (%)")
-        ax.set_ylabel("")
-
-    for ax in axes[n_features:]:
-        ax.axis("off")
-
-    fig.suptitle("Categorical Features Distribution", fontsize=14, fontweight="bold", y=0.995)
-    fig.tight_layout()
-    save_figure(fig, "04_categorical_features_distribution.pdf")
-
-    logger.info(f"  ✓ Generated {4} exploratory figures")
-
 
 # ---------------------------------------------------------------------------
 # 3. Build Preprocessing Pipeline
@@ -301,8 +239,6 @@ def main():
     
     X, y = load_data()
     y_log = np.log1p(y)
-
-    save_eda_figures(X, y, y_log)
 
     preprocessor = build_preprocessor(X)
     model_lr, scores_lr = train_linear_regression(preprocessor, X, y)
