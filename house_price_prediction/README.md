@@ -49,6 +49,8 @@ house-price-prediction/
 
 **Ames Housing dataset** — 2,930 residential property sales from Ames, Iowa (2006–2010) with 82 features describing nearly every aspect of a home.
 
+📩 Download from [Kaggle](https://www.kaggle.com/datasets/prevek18/ames-housing-dataset)
+
 | Category | Examples |
 |----------|----------|
 | 🏗️ **Structure** | Building type, house style, year built, overall quality |
