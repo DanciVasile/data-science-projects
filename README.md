@@ -16,7 +16,7 @@
 ![Seaborn](https://img.shields.io/badge/Seaborn-≥0.13.2-444876?logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-≥1.1.1-F37626?logo=jupyter&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-≥0.133.1-009688?logo=fastapi&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-≥1.19.0-FF4B4B?logo=streamlit&logoColor=white)
+![Gradio](https://img.shields.io/badge/Gradio-≥6.8.0-F97316?logo=hf&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
@@ -26,7 +26,7 @@
 | # | Project | Description | Status |
 |---|---------|-------------|--------|
 | 1 | [🏠 House Price Prediction](house_price_prediction/) | Regression on the Ames Housing dataset (2,930 samples, 82 features). Linear Regression vs Random Forest with full sklearn pipeline. | ✅ Complete |
-| 2 | [💳 Loan Default Prediction](loan_default_prediction/) | Binary classification on loan repayment data. | 🔜 Coming soon |
+| 2 | [💳 Loan Default Prediction](loan_default_prediction/) | Binary classification on LendingClub data (1.3M loans). Logistic Regression → Random Forest → XGBoost with Gradio dashboard. | ✅ Complete |
 | 3 | 🩺 Heart Disease Classification | Multi-class classification on clinical data. | 📋 Planned |
 | 4 | 🛒 Customer Churn Prediction | Churn analysis with gradient boosting and feature importance. | 📋 Planned |
 | 5 | 📝 Sentiment Analysis (NLP) | Text classification with deep learning (Keras). | 📋 Planned |

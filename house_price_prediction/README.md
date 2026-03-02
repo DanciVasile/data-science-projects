@@ -18,7 +18,7 @@ The codebase is split into two clear purposes:
 
 | | File | Purpose |
 |---|---|---|
-| 📓 | `notebooks/exploration.ipynb` | Interactive EDA & experimentation — 13 standard sections, plots inline, markdown storytelling |
+| 📓 | `notebooks/exploration.ipynb` | Interactive EDA & experimentation — 10 standard sections, plots inline, markdown storytelling |
 | 🏭 | `src/train.py` | Reproducible training script — no `plt.show()`, saves models & figures via CLI |
 
 Both files follow the same ML conventions: `X`/`y` naming, `TARGET_COL`, `numeric_features`/`categorical_features`, sklearn pipelines.
